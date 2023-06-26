@@ -18,6 +18,7 @@
 		contestant.image = !!image ? image : "./images/blank.jpg";
 		contestant.score = 0;
 		contestant.oldScore = 0;
+        contestant.scoreChange = 0;
 
 		contestants.push(contestant);
 
@@ -104,28 +105,28 @@
 		input.classList.add("score-edit");
 		input.type = "number";
 
-		scoreContainer.isOpen = false;
+		//scoreContainer.isOpen = false;
 		scoreContainer.addEventListener("mouseup", function(evt) {
-			scoreContainer.isOpen = !scoreContainer.isOpen;
+			//scoreContainer.isOpen = !scoreContainer.isOpen;
 
-			if(scoreContainer.isOpen) {
-				scoreContainer.appendChild(input);
-				input.value = con.score;
+            // timdidthis: this was modified to have a relative score change/adjustment input underneath the current score as to prevent confusion by the Taskmasker's lowly assistant
+            
+			//if(scoreContainer.isOpen) {
+				el.appendChild(input);
+				input.value = 0;
 				input.focus();
 				input.select();
-			} else {
+			/* } else {
 				scoreContainer.removeChild(input);
-			}
+			} */ // removed. do not want to toggle this
 		});
 
 		var exit = function() {
-			scoreContainer.isOpen = false;
-			scoreContainer.removeChild(input);
-
-			var score = !!input.value ? parseFloat(input.value) : 0;
-
-			if (con.score != score) {
-				con.score = score;
+			
+			var scoreChange = !!input.value ? parseFloat(input.value) : 0;
+            
+			if (scoreChange != 0) {
+                con.scoreChange = scoreChange;
 				showPlay();
 			}
 		};
@@ -252,6 +253,20 @@
 
 			resize();
 		}
+        
+        // timdidthis: update the contestant scores to include the latest score change/adjustment
+        for (var i = 0, l = contestants.length; i < l; ++i) {
+            var con = contestants[i];
+            con.oldScore = con.score;
+            con.score += con.scoreChange;
+            con.scoreChange = 0;
+            
+            // remove all score inputs and inherently reset them to zero
+            var inputs = document.getElementsByTagName("input")
+            while (inputs[0]) {
+                inputs[0].remove();
+            }
+        }
 
 		setTimeout(function() {
 			var start = 0;
@@ -262,7 +277,7 @@
 	
 				for (var i = 0, l = contestants.length; i < l; ++i) {
 					var con = contestants[i];
-	
+                    
 					var startRemainder = con.oldScore - Math.floor(con.oldScore);
 					var endRemainder = con.score - Math.floor(con.score);
 	
@@ -284,8 +299,7 @@
 				} else {
 					for (var i = 0, l = contestants.length; i < l; ++i) {
 						var con = contestants[i];
-						con.oldScore = con.score;
-					}
+score					}
 				}
 			};
 	
@@ -296,7 +310,7 @@
 
 	playButton.addEventListener("mouseup", play);
 
-	for (var i = 0; i < 5; ++i)
+	for (var i = 0; i < 6; ++i)
 		addContestant();
 
 	refreshContestants();
