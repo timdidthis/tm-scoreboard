@@ -9,7 +9,7 @@ html, body {
 }
 
 body {
-	background-image: url("../images/background.jpg");
+	background-image: url("https://timdidthis.github.io/tm-scoreboard-relative/images/background.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
