@@ -13,7 +13,7 @@ body {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-attachment:scroll; 
+	background-attachment:fixed; 
 	-o-background-size:cover; 
 	-moz-background-size:cover; 
 	-webkit-background-size:cover; 
