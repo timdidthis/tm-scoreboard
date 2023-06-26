@@ -1,9 +1,4 @@
 html {
-	background-image: url("../images/background.jpg");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-
 	font-size: 62.5%;
 }
 
@@ -14,6 +9,11 @@ html, body {
 }
 
 body {
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
 	display: block;
 
 	padding: 0;
@@ -303,13 +303,17 @@ main {
 }
 
 .score-edit {
+    color: white;
 	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+	width: 50%;
+	height: 50%;
+	top: 90%;
+	left: 25%;
 	text-align: center;
-	font-size: 92px;
+	font-size: 42px;
+    border: none;
+    outline: none; 
+    background: transparent;
 }
 
 .cover {
