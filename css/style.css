@@ -11,7 +11,7 @@ html, body {
 body {
 	background-image: url("https://timdidthis.github.io/tm-scoreboard-relative/images/background.jpg");
 	background-size: cover;
-	background-position: center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment:fixed; 
 	-o-background-size:cover; 
